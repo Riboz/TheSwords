@@ -12,7 +12,7 @@ public class Enemy_Script : MonoBehaviour
     Rigidbody2D rb;
      GameObject Player;
 
-     [SerializeField] bool Run_Enemy=true,Attack_enemy,Wait_enemy,Only_One_per_time,Looking_right,Hurt;
+     [SerializeField] bool Run_Enemy=true,Attack_enemy,Wait_enemy,Only_One_per_time,Looking_right,Hurt,first_Slow=false;
 
     public LayerMask Which_thing;
      //skeletonun olması gereken yükseklik
@@ -33,12 +33,20 @@ public class Enemy_Script : MonoBehaviour
         //
     }
     
-   
+   float first_Slow_timer;
     public void FixedUpdate()
     {
         Movement_To_Player();
         
-      
+      if(first_Slow)
+      {
+        first_Slow_timer+=Time.deltaTime;
+        if(first_Slow_timer>=8)
+        {
+         first_Slow_timer=0;
+         first_Slow=false;
+        }
+      }
         
     }
      public void Movement_To_Player()
@@ -199,4 +207,19 @@ public class Enemy_Script : MonoBehaviour
   
   yield break;
  }
+ public void Enemy_Spike_Effect()
+ {
+   StartCoroutine(Enemy_Spike_effect_Coroutine());
+   first_Slow=true;
+ }
+ private IEnumerator Enemy_Spike_effect_Coroutine ()
+ {
+   Enemy_speed=0.25f;
+   
+  yield return new WaitForSeconds(8f);
+ if(!first_Slow)Enemy_speed=0.5f;
+ 
+  yield break;
+ }
+
 }

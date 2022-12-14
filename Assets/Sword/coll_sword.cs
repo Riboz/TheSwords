@@ -109,7 +109,7 @@ public class coll_sword : MonoBehaviour
          Vector3 Bloodpos=pos[Random.Range(0,2)].position;
         ParticleSystem Blood=Instantiate(Blood_particle,Bloodpos,Quaternion.identity);
         Blood.GetComponent<Renderer>().sortingOrder=Random.Range(-2,3);
-        Cinemachine_Shake.Instance.Shake_Camera(0.3f,0.05f);
+        Cinemachine_Shake.Instance.Shake_Camera(0.4f,0.05f);
         coll.gameObject.GetComponent<Enemy_Script>().Enemy_Health_Function(1);
         Debug.Log("AAA");
         timer=0;
