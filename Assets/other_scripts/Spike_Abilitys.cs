@@ -44,8 +44,8 @@ public class Spike_Abilitys : MonoBehaviour
             timer=0;
              Spike_Health-=1;
              
-             this.GetComponent<SpriteRenderer>().sprite=Spike_sprite[Spike_Health];
-             if(Spike_Health==0)
+            if(Spike_Health>=0) this.GetComponent<SpriteRenderer>().sprite=Spike_sprite[Spike_Health];
+             if(Spike_Health<=0)
              {
                 Destroy(this.gameObject);
              }

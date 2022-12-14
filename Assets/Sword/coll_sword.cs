@@ -37,7 +37,7 @@ public class coll_sword : MonoBehaviour
          if(Input.GetMouseButtonDown(1)&&isin)
        {
         howmuch+=1;
-        spikes.GetComponent<Spike_Abilitys>().Clicked(howmuch);
+      if(spikes!=null)spikes.GetComponent<Spike_Abilitys>().Clicked(howmuch);
        
        ParticleSystem the_particle=Instantiate(Stone_particle,point.transform.position,Quaternion.identity);
         
