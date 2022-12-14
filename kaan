@@ -1,0 +1,30 @@
+[33mcommit 5774cc06b15a4370f8ee71b65e55e6f398fa9b52[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Riboz <74473384+Riboz@users.noreply.github.com>
+Date:   Fri Dec 9 11:10:50 2022 +0300
+
+     extra sword attack added
+
+[33mcommit d56717a9ef868bdad97dda64f269f54827a252f4[m
+Merge: 8bfe9f8 4b60396
+Author: Riboz <74473384+Riboz@users.noreply.github.com>
+Date:   Wed Dec 7 20:19:18 2022 +0300
+
+    Merge branch 'master' of https://github.com/Riboz/The-Sword
+
+[33mcommit 8bfe9f8decb12fe9c52b01d3271fc81b9763d2fc[m
+Author: Riboz <74473384+Riboz@users.noreply.github.com>
+Date:   Wed Dec 7 20:18:07 2022 +0300
+
+    The attack animation and bool mode added
+
+[33mcommit 4b6039655e61eb5423941a8178978726bb2faf17[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Yigit Emecen <80755434+YigitSalihEmecen@users.noreply.github.com>
+Date:   Wed Dec 7 18:22:48 2022 +0300
+
+    Create README.md
+
+[33mcommit b82c50c9a21f0d83e9c8a45d12f4f7b097b345e4[m
+Author: Riboz <74473384+Riboz@users.noreply.github.com>
+Date:   Wed Dec 7 01:26:10 2022 +0300
+
+    thw sword mechanics
