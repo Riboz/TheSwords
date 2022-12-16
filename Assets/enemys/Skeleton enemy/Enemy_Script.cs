@@ -12,15 +12,16 @@ public class Enemy_Script : MonoBehaviour
     Rigidbody2D rb;
      GameObject Player;
 
-     [SerializeField] bool Run_Enemy=true,Attack_enemy,Wait_enemy,Only_One_per_time,Looking_right,Hurt,first_Slow=false;
+     [SerializeField] public bool Run_Enemy=true,Attack_enemy,Wait_enemy,Only_One_per_time,Looking_right,Hurt,first_Slow=false,Is_Death=false;
 
     public LayerMask Which_thing;
      //skeletonun olması gereken yükseklik
-     private float final_height_y=-0.8f,Enemy_speed=0.5f,Enemy_power,Enemy_Health;
+     private float final_height_y=-0.8f,Enemy_speed=0.5f,Enemy_power,Enemy_Health=20;
     const string Enemy_idle="skeleton_idle";
     const string Enemy_run="enemy_run";
     const string Enemy_attack="skeleton_attack"; 
     const string Enemy_hurt="enemy_hurt";
+    const string Enemy_death="enemy_death";
     void Start()
     {
         
@@ -36,6 +37,8 @@ public class Enemy_Script : MonoBehaviour
    float first_Slow_timer;
     public void FixedUpdate()
     {
+      if(!Is_Death)
+      {
         Movement_To_Player();
         
       if(first_Slow)
@@ -46,6 +49,7 @@ public class Enemy_Script : MonoBehaviour
          first_Slow_timer=0;
          first_Slow=false;
         }
+      }
       }
         
     }
@@ -107,7 +111,7 @@ public class Enemy_Script : MonoBehaviour
           {
            Run_Enemy=false;
            Attack_enemy=true;
-           if(Attack_enemy==true && Only_One_per_time && !Wait_enemy)
+           if(Attack_enemy==true && Only_One_per_time && !Wait_enemy && !Hurt)
            { 
             StartCoroutine(Attack_Funciton());
             StopCoroutine(Wait_Function());
@@ -186,13 +190,27 @@ public class Enemy_Script : MonoBehaviour
 
  public void Enemy_Health_Function(float Damage)
  {
-  Enemy_Health-=Damage;
-  if(Run_Enemy)StartCoroutine(dontwalk());
+  
+  if(Enemy_Health<=0)
+  {
+    Is_Death=true;
+
+    // düşman ölme animasyonu ve yer altına çekilme enumu 
+    this.transform.position=this.transform.position+new Vector3(0,-0.01f,0);
+    StartCoroutine(The_Death());
+  }
+  else
+  {
+   Enemy_Health-=Damage;
+if(Run_Enemy)StartCoroutine(dontwalk());
  StartCoroutine(Health_taken());
+  }
+  
  }
  IEnumerator dontwalk()
  {
   Run_Enemy=false;
+  
   yield return new WaitForSeconds(0.5f);
  Run_Enemy=true;
   yield break;
@@ -209,17 +227,34 @@ public class Enemy_Script : MonoBehaviour
  }
  public void Enemy_Spike_Effect()
  {
-   StartCoroutine(Enemy_Spike_effect_Coroutine());
-   first_Slow=true;
+   
+  StartCoroutine(Enemy_Spike_effect_Coroutine());
  }
  private IEnumerator Enemy_Spike_effect_Coroutine ()
  {
    Enemy_speed=0.25f;
-   
-  yield return new WaitForSeconds(8f);
- if(!first_Slow)Enemy_speed=0.5f;
+  yield return new WaitForSeconds(2f);
+  Enemy_speed=0.5f;
  
   yield break;
  }
-
+ private IEnumerator The_Death()
+ {
+  float i=0;
+  
+  
+  st.State_Machine(Enemy_death);
+  yield return new WaitForSeconds(6);
+  while(i<8)
+  {
+    i+=1;
+    yield return new WaitForSeconds(0.2f);
+    this.transform.position=Vector2.MoveTowards(this.transform.position,new Vector2(this.transform.position.x,this.transform.position.y-0.2f),0.02f);
+    
+  }
+  Destroy(this.gameObject);
+  yield break;
+  
+  
+ }
 }
