@@ -16,17 +16,17 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: -0.179
     min: -1
     max: 1
   xMultiplier:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.502
     min: 0
     max: 1
   yMultiplier:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.691
     min: 0
     max: 1
   center:
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.6
+    m_Value: 0.071
     min: 0
     max: 1
 --- !u!114 &-2946106035316277839
@@ -75,12 +75,12 @@ MonoBehaviour:
     m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.73
     min: 0
     max: 1
   response:
     m_OverrideState: 1
-    m_Value: 0.757
+    m_Value: 0.481
     min: 0
     max: 1
   texture:
@@ -111,12 +111,12 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.431
+    m_Value: 0.477
     min: 0
     max: 1
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.56
+    m_Value: 0.575
     min: 0.01
     max: 1
   rounded:
@@ -164,7 +164,7 @@ MonoBehaviour:
     min: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.73
+    m_Value: 0.182
     min: 0
     max: 1
   clamp:
@@ -182,7 +182,7 @@ MonoBehaviour:
     m_Value: 1
   skipIterations:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 5
     min: 0
     max: 16
   dirtTexture:
