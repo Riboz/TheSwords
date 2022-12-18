@@ -24,7 +24,7 @@ public class Fireball_script : MonoBehaviour
             Fireball_pos.transform.position=new Vector3(Fireball_pos.transform.position.x,Fireball_pos.transform.position.y+Mathf.Sin(13*Time.time)/60,0);
             this.transform.position=Vector3.MoveTowards(this.transform.position,Fireball_pos.transform.position,1.8f*Time.deltaTime);
         }
-        else 
+        else if(!Follow_Fireball_Spawn)
         {
             if(Just_Once)
             {
