@@ -38,7 +38,7 @@ public class Fireball_script : MonoBehaviour
                 } 
             if(!Just_Once)
             {
-                this.transform.position=Vector3.MoveTowards(this.transform.position,Player_last_pos,4*Time.deltaTime);
+                this.transform.position=Vector3.MoveTowards(this.transform.position,Player_last_pos,3*Time.deltaTime);
                 
             }
             
@@ -49,7 +49,7 @@ public class Fireball_script : MonoBehaviour
     {
         if(coll.gameObject.CompareTag("Sword"))
         {
-            if(!Sword.its_attack && !Follow_Fireball_Spawn)
+            if(!Sword.its_attack)
             {
            Destroy(this.gameObject);
             }
