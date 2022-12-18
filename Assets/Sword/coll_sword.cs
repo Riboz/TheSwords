@@ -32,6 +32,8 @@ public class coll_sword : MonoBehaviour
             this.transform.Rotate(0, 0,sword_scr.angle_of_attack);
            
         }
+
+        
        
 
          if(Input.GetMouseButtonDown(1)&&isin)

@@ -8964,9 +8964,10 @@ GameObject:
   - component: {fileID: 1011345747}
   - component: {fileID: 1011345748}
   - component: {fileID: 1011345749}
+  - component: {fileID: 1011345750}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9104,6 +9105,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!68 &1011345750
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011345744}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.2510191, y: 0.18921787}
+  - {x: 0.24735862, y: 0.24877842}
+  - {x: 0.16635667, y: 0.23052286}
+  - {x: -0.18465039, y: -0.122676134}
+  - {x: -0.12481193, y: -0.18068157}
+  - {x: 0.2531008, y: 0.18557104}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1001 &1118896279
 PrefabInstance:
   m_ObjectHideFlags: 0
