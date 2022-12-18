@@ -45,7 +45,7 @@ yield return new WaitForSeconds(2.5f);
 this.GetComponent<SpriteRenderer>().color=Color.yellow;
 yield return new WaitForSeconds(0.5f);
     this.GetComponent<SpriteRenderer>().color=Color.white;
-    fireball_1.GetComponent<Fireball_script>().Follow_Fireball_Spawn=false;
+   if(!Is_Death) fireball_1.GetComponent<Fireball_script>().Follow_Fireball_Spawn=false;
     cooldown=0;
     fireball_instantitated=false;
     yield break;
