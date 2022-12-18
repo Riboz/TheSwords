@@ -39,8 +39,12 @@ public void FixedUpdate()
 }
 IEnumerator fireballthrow()
 { 
+    if(Vector2.Distance(this.transform.position,Player.transform.position)<5)
+    {
 fireball_1= Instantiate(fireball,fireball_pos.transform.position,Quaternion.identity);
 fireball_1.GetComponent<Fireball_script>().Fireball_pos=fireball_pos;
+   
+
 yield return new WaitForSeconds(2.5f);
 this.GetComponent<SpriteRenderer>().color=Color.yellow;
 yield return new WaitForSeconds(0.5f);
@@ -48,6 +52,10 @@ yield return new WaitForSeconds(0.5f);
    if(!Is_Death) fireball_1.GetComponent<Fireball_script>().Follow_Fireball_Spawn=false;
     cooldown=0;
     fireball_instantitated=false;
+    }
+    else
+    { cooldown=0;
+    fireball_instantitated=false;}
     yield break;
 }
 public void Fireball()

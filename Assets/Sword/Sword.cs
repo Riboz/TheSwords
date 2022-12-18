@@ -108,10 +108,6 @@ public class Sword : MonoBehaviour
             StartCoroutine(Attack_Stamina_refill());
             only_one_refill=false;
          }
-        
-          
-              
-            
          
         }
 

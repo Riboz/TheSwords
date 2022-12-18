@@ -45,4 +45,11 @@ public class Fireball_script : MonoBehaviour
             
         }
     }
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if(coll.gameObject.CompareTag("Sword"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
