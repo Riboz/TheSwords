@@ -36,6 +36,7 @@ public void FixedUpdate()
 {
    Floating_Movement();
    Fireball();
+   Which_Direction_Look();
 }
 IEnumerator fireballthrow()
 { 
@@ -57,6 +58,18 @@ yield return new WaitForSeconds(0.5f);
     { cooldown=0;
     fireball_instantitated=false;}
     yield break;
+}
+public void Which_Direction_Look()
+{
+    if(this.transform.position.x-Player.transform.position.x>0)
+    {
+         GetComponent<SpriteRenderer>().flipX=true;
+    }
+    else
+    {
+          GetComponent<SpriteRenderer>().flipX=false;
+    }
+   
 }
 public void Fireball()
 {
