@@ -49,7 +49,11 @@ public class Fireball_script : MonoBehaviour
     {
         if(coll.gameObject.CompareTag("Sword"))
         {
-            Destroy(this.gameObject);
+            if(!Sword.its_attack)
+            {
+           Destroy(this.gameObject);
+            }
+        
         }
     }
 }
