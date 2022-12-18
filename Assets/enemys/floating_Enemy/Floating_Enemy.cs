@@ -9,6 +9,7 @@ public class Floating_Enemy : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     [SerializeField] GameObject fireball,Player;
+    GameObject fireball_1;
      Vector3 The_Point;
      public Transform fireball_pos;
     public float timer,cooldown,Enemy_Health=15,Enemy_speed;
@@ -38,7 +39,7 @@ public void FixedUpdate()
 }
 IEnumerator fireballthrow()
 { 
-GameObject fireball_1= Instantiate(fireball,fireball_pos.transform.position,Quaternion.identity);
+fireball_1= Instantiate(fireball,fireball_pos.transform.position,Quaternion.identity);
 fireball_1.GetComponent<Fireball_script>().Fireball_pos=fireball_pos;
 yield return new WaitForSeconds(2.5f);
 this.GetComponent<SpriteRenderer>().color=Color.yellow;
@@ -149,6 +150,7 @@ if(Run_Enemy)StartCoroutine(dontwalk());
  {
   
   st.State_Machine(Enemy_death);
+  Destroy(fireball_1);
   yield return new WaitForSeconds(0.6f);
   
   Destroy(this.gameObject);
