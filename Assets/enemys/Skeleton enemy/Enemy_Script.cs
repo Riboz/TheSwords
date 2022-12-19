@@ -7,10 +7,12 @@ public class Enemy_Script : MonoBehaviour
     // Start is called before the first frame update
     //mezardan çıksın mezar kırılsın ve içinden bizim skelet çıksın ardından ana karaktere doğru koşsun
     //skeletonun raycasti ana karaktere çarpınca dursun ve saldırsın
+    
     Statemachine st;
     Animator anim;
     Rigidbody2D rb;
      GameObject Player;
+      public int level;
 
      [SerializeField] public bool Run_Enemy=true,Attack_enemy,Wait_enemy,Only_One_per_time,Looking_right,Hurt,first_Slow=false,Is_Death=false;
 

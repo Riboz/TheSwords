@@ -43,7 +43,7 @@ public class Mana_Bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<Image>().fillAmount=sword.Sword_Fuel/50;
+        this.GetComponent<Image>().fillAmount=sword.Sword_Fuel/80;
        
     }
 }
