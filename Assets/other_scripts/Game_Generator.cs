@@ -16,9 +16,13 @@ public class Game_Generator : MonoBehaviour
     //randomu karaktere göre alırken köşelerden daha fazla bir sayı çıkmasın
     public IEnumerator spawner()
     {
-        for(int i=0;i<=10*level;i++)
+        // 1.oda için
+       if(level==1)
+       {
+        for(int i=0;i<=24*level;i++)
         {
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(6f);
+            // eğer mezar olayı yapılabilirse her türlü çıkılsın 
              Again:
             int whic_direction=(int)Random.Range(0,100);
             if(whic_direction<50){ 
@@ -38,12 +42,10 @@ public class Game_Generator : MonoBehaviour
                 Instantiate(Skeleton,new Vector3(x_pos,player.transform.position.y,0),Quaternion.identity);
                } 
                else {goto Again;}
-               
-            
-               
-               }
+             }
                 
         }
+       }
     }
     public void Start()
     {
