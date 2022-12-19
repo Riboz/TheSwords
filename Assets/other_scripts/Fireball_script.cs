@@ -51,9 +51,9 @@ public class Fireball_script : MonoBehaviour
         {
             if(!Sword.its_attack)
             {
+
            Destroy(this.gameObject);
             }
-        
         }
     }
 }
