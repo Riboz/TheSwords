@@ -51,15 +51,9 @@ public class Fireball_script : MonoBehaviour
         {
             if(!Sword.its_attack)
             {
-<<<<<<< Updated upstream
+
            Destroy(this.gameObject);
             }
-        
-=======
-                Destroy(this.gameObject);
-            }
-           
->>>>>>> Stashed changes
         }
     }
 }
