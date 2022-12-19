@@ -9,14 +9,20 @@ public class Sword : MonoBehaviour
    
    
     public Transform Sword_base_position;
+    public GameObject Mana_Sword;
     Vector2 lookdir;
     public static bool its_attack=false;
     public Vector3 right_click_position;
+    public ParticleSystem Mana_effect;
     public Camera mainCamera;
-    public float angle,Sword_Fuel=80, angle_of_attack , timera,timerb ;
+    public float angle,Sword_Fuel=80, angle_of_attack , timera,timerb,timer_Skill_Rain ;
     public float floatspeed;
     [SerializeField] public bool Sword_Default_Mode, Damage=false,Right_click=false,Go_back=false,Wait_behind=false,Wait_right_click=false,Only_One_Attack,only_one_refill;
+    
     public bool Sword_skill_Sword_rain;
+    //alınan item boolu aldığında sadece aktif olmalı
+    [Header(" achieved Skills")]
+    public bool Skill_rain_achievement;
     Rigidbody2D rb;
    // sağ tıklanan yerin noktasını alıcak 
    //ve oraya doğru gidicek eğer bir yer yoksa sword base positiona gidilecek sonra pozisyonda durucak 
@@ -29,26 +35,46 @@ public class Sword : MonoBehaviour
     }
     public void Skill_sword_rain_Input()
     {
+
       if(Input.GetKeyDown(KeyCode.C)&&!Sword_skill_Sword_rain)
       {
+        Sword_skill_Sword_rain=true;
         StartCoroutine(Skill_sword_rain());
       }
     }
     IEnumerator Skill_sword_rain()
     {
-       Sword_Default_Mode=false;
-      Sword_skill_Sword_rain=true;
-    Debug.Log("a");
-    yield return new WaitForSeconds(3f);
+      Sword_Default_Mode=false;
+      
+     Debug.Log("a");
 
+      rb.DORotate(-135f,0.1f);
+      yield return new WaitForSeconds(0.25f);
+      for(int i=0;i<=15;i++)
+      {
+         Vector3 Spawwn_pos=new Vector3(this.transform.position.x+Random.Range(-0.6f,0.6f),this.transform.position.y,0);
+         Instantiate(Mana_effect,Spawwn_pos,Quaternion.identity);
+          Cinemachine_Shake.Instance.Shake_Camera(0.4f,0.05f);
+         Instantiate(Mana_Sword,Spawwn_pos,this.transform.rotation);
+        yield return new WaitForSeconds(0.2f);
+      }
     Sword_skill_Sword_rain=false;
     Sword_Default_Mode=true;
+    timer_Skill_Rain=0;
     yield break;
     }
     // Update is called once per frame
     void Update()
     {
-      Skill_sword_rain_Input();
+    if(Skill_rain_achievement)
+    {
+      timer_Skill_Rain+=Time.deltaTime;
+      if(timer_Skill_Rain>6)
+      {
+        Skill_sword_rain_Input();
+      }
+    }
+
         Clicks();
         Go_back_Sword();
         
@@ -139,7 +165,7 @@ public class Sword : MonoBehaviour
          }
          
         }
-      }
+      
 
     if(!Right_click&&!Go_back&&!its_attack)
         {
@@ -174,15 +200,16 @@ public class Sword : MonoBehaviour
           {
             this.transform.position=new Vector3(this.transform.position.x,right_click_position.y+Mathf.Sin(3*Time.time)/20,0);
           }
+      }
            
     }
    public IEnumerator Attack_Stamina()
    {
     while(its_attack)
     {
-        Sword_Fuel-=0.06f;
+        Sword_Fuel-=0.05f;
         // stamina barı azalt
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.005f);
         if(Sword_Fuel<=0)
         {
             its_attack=false;
@@ -196,10 +223,10 @@ public class Sword : MonoBehaviour
     Wait_right_click=false;
     while(!its_attack && Sword_Fuel<80)
     {
-        Sword_Fuel+=0.015f;
+        Sword_Fuel+=0.02f;
         // stamina barı azalt  
        
-        yield return new WaitForSeconds(0.005f);
+        yield return new WaitForSeconds(0.003f);
         if(Sword_Fuel>=80)
         {
            Sword_Fuel=80;
