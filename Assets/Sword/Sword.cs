@@ -97,7 +97,7 @@ public class Sword : MonoBehaviour
         else
         {
              timera +=Time.deltaTime;
-           if(Wait_right_click &&!Right_click){ rb.DORotate(-135f,0.05f);}
+           
           
             floatspeed=2.5f;
             StopCoroutine(Attack_Stamina());
