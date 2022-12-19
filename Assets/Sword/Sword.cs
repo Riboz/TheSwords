@@ -15,7 +15,8 @@ public class Sword : MonoBehaviour
     public Camera mainCamera;
     public float angle,Sword_Fuel=80, angle_of_attack , timera,timerb ;
     public float floatspeed;
-    [SerializeField] public bool Damage=false,Right_click=false,Go_back=false,Wait_behind=false,Wait_right_click=false,Only_One_Attack,only_one_refill;
+    [SerializeField] public bool Sword_Default_Mode, Damage=false,Right_click=false,Go_back=false,Wait_behind=false,Wait_right_click=false,Only_One_Attack,only_one_refill;
+    public bool Sword_skill_Sword_rain;
     Rigidbody2D rb;
    // sağ tıklanan yerin noktasını alıcak 
    //ve oraya doğru gidicek eğer bir yer yoksa sword base positiona gidilecek sonra pozisyonda durucak 
@@ -26,12 +27,32 @@ public class Sword : MonoBehaviour
     rb=GetComponent<Rigidbody2D>();    
    
     }
-    
+    public void Skill_sword_rain_Input()
+    {
+      if(Input.GetKeyDown(KeyCode.C)&&!Sword_skill_Sword_rain)
+      {
+        StartCoroutine(Skill_sword_rain());
+      }
+    }
+    IEnumerator Skill_sword_rain()
+    {
+       Sword_Default_Mode=false;
+      Sword_skill_Sword_rain=true;
+    Debug.Log("a");
+    yield return new WaitForSeconds(3f);
+
+    Sword_skill_Sword_rain=false;
+    Sword_Default_Mode=true;
+    yield break;
+    }
     // Update is called once per frame
     void Update()
     {
-       Clicks();
+      Skill_sword_rain_Input();
+        Clicks();
         Go_back_Sword();
+        
+       
     }
     void Go_back_Sword()
     {
@@ -42,6 +63,10 @@ public class Sword : MonoBehaviour
             Wait_behind=true;
             Wait_right_click=false;
             its_attack=false;
+            Sword_Default_Mode=true;
+            Sword_skill_Sword_rain=false;
+            StopCoroutine(Skill_sword_rain());
+            //bütün skilleri burada false la
             
         }
         if(Go_back)
@@ -49,7 +74,7 @@ public class Sword : MonoBehaviour
               lookdir =Sword_base_position.position-this.transform.position;
               angle=Mathf.Atan2(lookdir.y,lookdir.x)*Mathf.Rad2Deg-45f;
              if(!its_attack){ rb.DORotate(angle,0.025f);}
-              this.transform.position=Vector3.MoveTowards(this.transform.position,Sword_base_position.position,3*Time.deltaTime);
+              this.transform.position=Vector3.MoveTowards(this.transform.position,Sword_base_position.position,floatspeed*Time.deltaTime);
               if(this.transform.position==Sword_base_position.position)
               {
                 Go_back=false;
@@ -66,6 +91,8 @@ public class Sword : MonoBehaviour
     }
     void Clicks()
     {
+      if(Sword_Default_Mode)
+      {
         if(Input.GetMouseButton(0)&&Sword_Fuel>0&&!coll_sword.isin &&!Wait_behind)
         {
             its_attack=true;
@@ -74,7 +101,7 @@ public class Sword : MonoBehaviour
             
              Vector3 Mousepos=mainCamera.ScreenToWorldPoint(Input.mousePosition);
              Mousepos=new Vector3(Mousepos.x,Mousepos.y,0);
-             angle_of_attack=1500*Time.deltaTime;
+             angle_of_attack=2000*Time.deltaTime;
           this.transform.Rotate(0, 0,angle_of_attack);
           this.transform.position=Vector3.MoveTowards(this.transform.position,Mousepos,floatspeed*Time.deltaTime);
           right_click_position=this.transform.position;
@@ -112,6 +139,7 @@ public class Sword : MonoBehaviour
          }
          
         }
+      }
 
     if(!Right_click&&!Go_back&&!its_attack)
         {
@@ -133,7 +161,7 @@ public class Sword : MonoBehaviour
             lookdir =right_click_position-this.transform.position;
             angle=Mathf.Atan2(lookdir.y,lookdir.x)*Mathf.Rad2Deg-45f;
             if(!its_attack){rb.DORotate((int)angle,0.025f);}
-            this.transform.position=Vector3.MoveTowards(this.transform.position,right_click_position,floatspeed*Time.deltaTime);
+            this.transform.position=Vector3.MoveTowards(this.transform.position,right_click_position,2*floatspeed*Time.deltaTime);
             if(this.transform.position==right_click_position)
             {
                 Right_click=false;
@@ -142,9 +170,9 @@ public class Sword : MonoBehaviour
 
             }
           }
-          if(Wait_right_click &&!Right_click&&!its_attack)
+          if(Wait_right_click &&!Right_click&&!its_attack&&Sword_Default_Mode)
           {
-            this.transform.position=new Vector3(this.transform.position.x,right_click_position.y+Mathf.Sin(3*Time.time)/10,0);
+            this.transform.position=new Vector3(this.transform.position.x,right_click_position.y+Mathf.Sin(3*Time.time)/20,0);
           }
            
     }

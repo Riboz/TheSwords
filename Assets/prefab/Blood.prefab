@@ -77,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: SizeBySpeedModule.range.x
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: SizeBySpeedModule.range.y
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: ColorBySpeedModule.enabled
@@ -89,7 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: ColorBySpeedModule.range.x
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
+      propertyPath: ColorBySpeedModule.range.y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: RotationBySpeedModule.enabled
@@ -109,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -117,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: InitialModule.startSpeed.minMaxState
@@ -169,15 +173,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.scalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[2].countCurve.scalar
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2295110155355509611, guid: 2d509cfd8fdad0c4d94533c3e68b58f7, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
