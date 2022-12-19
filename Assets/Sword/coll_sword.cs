@@ -14,7 +14,7 @@ public class coll_sword : MonoBehaviour
     Vector3 last_pos;
     int howmuch=0;
     float timer;
-    bool a=false;
+    
     public GameObject the_spike,spikes;
     public Transform point;
     public Transform[] pos;
@@ -30,8 +30,10 @@ public class coll_sword : MonoBehaviour
         if(Sword.its_attack)
         {
             this.transform.Rotate(0, 0,sword_scr.angle_of_attack);
-            a=true;
+           
         }
+
+        
        
 
          if(Input.GetMouseButtonDown(1)&&isin)
@@ -110,6 +112,33 @@ public class coll_sword : MonoBehaviour
        
         coll.gameObject.GetComponent<Enemy_Script>().Enemy_Health_Function(1);
         if(!coll.gameObject.GetComponent<Enemy_Script>().Is_Death)
+        {
+        Cinemachine_Shake.Instance.Shake_Camera(0.4f,0.05f);
+        Vector3 Bloodpos=pos[Random.Range(0,2)].position;
+        ParticleSystem Blood=Instantiate(Blood_particle,Bloodpos,Quaternion.identity);
+        Blood.GetComponent<Renderer>().sortingOrder=Random.Range(-2,3);
+        }
+     
+
+        Debug.Log("AAA");
+        timer=0;
+        }
+       
+      }
+      
+     }
+     else if(coll.CompareTag("Enemy2"))
+     {
+        
+      if(Sword.its_attack)
+      {
+       timer+=Time.deltaTime;
+        if(timer>0.1f)
+        {
+       
+       
+        coll.gameObject.GetComponent<Floating_Enemy>().Enemy_Health_Function(1);
+        if(!coll.gameObject.GetComponent<Floating_Enemy>().Is_Death)
         {
         Cinemachine_Shake.Instance.Shake_Camera(0.4f,0.05f);
         Vector3 Bloodpos=pos[Random.Range(0,2)].position;

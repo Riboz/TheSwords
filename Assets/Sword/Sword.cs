@@ -13,7 +13,7 @@ public class Sword : MonoBehaviour
     public static bool its_attack=false;
     public Vector3 right_click_position;
     public Camera mainCamera;
-    public float angle,Sword_Fuel=50, angle_of_attack;
+    public float angle,Sword_Fuel=80, angle_of_attack , timera,timerb ;
     public float floatspeed;
     [SerializeField] public bool Damage=false,Right_click=false,Go_back=false,Wait_behind=false,Wait_right_click=false,Only_One_Attack,only_one_refill;
     Rigidbody2D rb;
@@ -80,11 +80,12 @@ public class Sword : MonoBehaviour
           right_click_position=this.transform.position;
             
              
-
+          timerb+=Time.deltaTime;
             Debug.Log("saldiri acik");
             floatspeed=5;
-            if(Only_One_Attack)
+            if(Only_One_Attack && timerb>1f)
             {
+              timerb=0;
              StartCoroutine(Attack_Stamina());
              Only_One_Attack=false;
         
@@ -95,23 +96,20 @@ public class Sword : MonoBehaviour
         }
         else
         {
-            
-           if(Wait_right_click &&!Right_click){ rb.DORotate(-135f,0.05f);}
+             timera +=Time.deltaTime;
+           
           
             floatspeed=2.5f;
             StopCoroutine(Attack_Stamina());
             its_attack=false;
              Debug.Log("saldiri kapali");
             Only_One_Attack=true;
-         if(only_one_refill)
+         if(only_one_refill && timera>=1f)
          {
+          timera=0;
             StartCoroutine(Attack_Stamina_refill());
             only_one_refill=false;
          }
-        
-          
-              
-            
          
         }
 
@@ -154,27 +152,30 @@ public class Sword : MonoBehaviour
    {
     while(its_attack)
     {
-        Sword_Fuel-=2;
+        Sword_Fuel-=0.06f;
         // stamina barı azalt
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.01f);
         if(Sword_Fuel<=0)
         {
             its_attack=false;
+            yield break;
         }
     }
     
    }
    public IEnumerator Attack_Stamina_refill()
    {
-    while(!its_attack && Sword_Fuel<50)
+    Wait_right_click=false;
+    while(!its_attack && Sword_Fuel<80)
     {
-        Sword_Fuel+=0.5f;
+        Sword_Fuel+=0.015f;
         // stamina barı azalt  
        
-        yield return new WaitForSeconds(0.6f);
-        if(Sword_Fuel>=50)
+        yield return new WaitForSeconds(0.005f);
+        if(Sword_Fuel>=80)
         {
-           Sword_Fuel=50;
+           Sword_Fuel=80;
+           yield break;
         }
     }
     
