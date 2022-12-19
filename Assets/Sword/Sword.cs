@@ -13,7 +13,7 @@ public class Sword : MonoBehaviour
     public static bool its_attack=false;
     public Vector3 right_click_position;
     public Camera mainCamera;
-    public float angle,Sword_Fuel=50, angle_of_attack , timera,timerb ;
+    public float angle,Sword_Fuel=80, angle_of_attack , timera,timerb ;
     public float floatspeed;
     [SerializeField] public bool Damage=false,Right_click=false,Go_back=false,Wait_behind=false,Wait_right_click=false,Only_One_Attack,only_one_refill;
     Rigidbody2D rb;
@@ -166,15 +166,15 @@ public class Sword : MonoBehaviour
    public IEnumerator Attack_Stamina_refill()
    {
     Wait_right_click=false;
-    while(!its_attack && Sword_Fuel<50)
+    while(!its_attack && Sword_Fuel<80)
     {
         Sword_Fuel+=0.015f;
         // stamina barı azalt  
        
         yield return new WaitForSeconds(0.005f);
-        if(Sword_Fuel>=50)
+        if(Sword_Fuel>=80)
         {
-           Sword_Fuel=50;
+           Sword_Fuel=80;
            yield break;
         }
     }

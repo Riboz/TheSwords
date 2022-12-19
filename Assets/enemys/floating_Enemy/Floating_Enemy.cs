@@ -11,8 +11,9 @@ public class Floating_Enemy : MonoBehaviour
     [SerializeField] GameObject fireball,Player;
     GameObject fireball_1;
      Vector3 The_Point;
+     public int level;
      public Transform fireball_pos;
-    public float timer,cooldown,Enemy_Health=15,Enemy_speed;
+    public float cooldown,Enemy_Health=15,Enemy_speed;
     public bool Is_Death,Run_Enemy,Hurt,place_found,fireball_instantitated;
     const string Enemy_idle="enemy_idle";
     const string Enemy_run="enemy_run";
@@ -92,10 +93,11 @@ public void Fireball()
    if(!Is_Death)
     {
 
-
-   timer+=Time.deltaTime;
-
-   if(!place_found) The_Point=new Vector3((int)Random.Range(-10,10),Random.Range(1,2.5f),0);
+   if(!place_found)
+   {
+    The_Point=new Vector3((int)Random.Range(-10,10),Random.Range(1,2.5f),0);
+    // int leveldeki değere göre değişiklik göstericektir
+   }
    
     if(Vector2.Distance(Player.transform.position,The_Point)>0.25f &&Vector2.Distance(Player.transform.position,The_Point)<5f &&Vector2.Distance(this.transform.position,The_Point)>1f)
 
@@ -119,15 +121,13 @@ public void Fireball()
     // iskelet sürekli olarak  karakterin menzili içerisinde belirli bir uzaklıkda bir nokta seçer oraya gider giderken ateş edebilir ama yavaş ateş eder 
 
  }
-
-
-
-
-
-
-
-
-    // hurt and death 
+void OnCollisionEnter2D(Collision2D coll)
+{
+ if(coll.gameObject.CompareTag("Ground"))
+ {
+    place_found=false;
+ }
+}
    public void Enemy_Health_Function(float Damage)
  {
   
@@ -165,7 +165,6 @@ if(Run_Enemy)StartCoroutine(dontwalk());
   st.State_Machine(Enemy_idle);
   yield break;
  }
-
 
  private IEnumerator The_Death()
  {
