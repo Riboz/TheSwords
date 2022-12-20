@@ -47,7 +47,7 @@ public class Sword : MonoBehaviour
       Sword_Default_Mode=false;
       
      Debug.Log("a");
-
+     StopCoroutine(Attack_Stamina_refill());
       rb.DORotate(-135f,0.1f);
       yield return new WaitForSeconds(0.25f);
       for(int i=0;i<=15;i++)
@@ -59,6 +59,8 @@ public class Sword : MonoBehaviour
          Instantiate(Mana_Sword,Spawwn_pos,this.transform.rotation);
         yield return new WaitForSeconds(0.2f);
       }
+      StartCoroutine(Attack_Stamina_refill());
+      
     Sword_skill_Sword_rain=false;
     Sword_Default_Mode=true;
     timer_Skill_Rain=0;
@@ -208,7 +210,7 @@ public class Sword : MonoBehaviour
    {
     while(its_attack)
     {
-        Sword_Fuel-=0.05f;
+        Sword_Fuel-=0.035f;
         // stamina barı azalt
         yield return new WaitForSeconds(0.005f);
         if(Sword_Fuel<=0)
@@ -221,7 +223,7 @@ public class Sword : MonoBehaviour
    }
    public IEnumerator Attack_Stamina_refill()
    {
-    Wait_right_click=false;
+    
     while(!its_attack && Sword_Fuel<80)
     {
         Sword_Fuel+=0.02f;
