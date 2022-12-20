@@ -64010,7 +64010,6 @@ GameObject:
   - component: {fileID: 1011345748}
   - component: {fileID: 1011345749}
   - component: {fileID: 1011345750}
-  - component: {fileID: 1011345747}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Sword
@@ -64085,23 +64084,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -135.196}
---- !u!114 &1011345747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011345744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGlobal: 0
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 785ce86534f4f314b8440bcf05349f05, type: 2}
 --- !u!114 &1011345748
 MonoBehaviour:
   m_ObjectHideFlags: 0
