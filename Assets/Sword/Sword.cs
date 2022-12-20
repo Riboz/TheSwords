@@ -36,7 +36,7 @@ public class Sword : MonoBehaviour
     public void Skill_sword_rain_Input()
     {
 
-      if(Input.GetKeyDown(KeyCode.C)&&!Sword_skill_Sword_rain)
+      if(Input.GetKeyDown(KeyCode.C)&&!Sword_skill_Sword_rain &&Sword_Fuel>=40)
       {
         Sword_skill_Sword_rain=true;
         StartCoroutine(Skill_sword_rain());
@@ -47,17 +47,20 @@ public class Sword : MonoBehaviour
       Sword_Default_Mode=false;
       
      Debug.Log("a");
-
+     StopCoroutine(Attack_Stamina_refill());
       rb.DORotate(-135f,0.1f);
       yield return new WaitForSeconds(0.25f);
       for(int i=0;i<=15;i++)
       {
          Vector3 Spawwn_pos=new Vector3(this.transform.position.x+Random.Range(-0.6f,0.6f),this.transform.position.y,0);
          Instantiate(Mana_effect,Spawwn_pos,Quaternion.identity);
+         Sword_Fuel-=2.5f;
           Cinemachine_Shake.Instance.Shake_Camera(0.4f,0.05f);
          Instantiate(Mana_Sword,Spawwn_pos,this.transform.rotation);
         yield return new WaitForSeconds(0.2f);
       }
+      StartCoroutine(Attack_Stamina_refill());
+      
     Sword_skill_Sword_rain=false;
     Sword_Default_Mode=true;
     timer_Skill_Rain=0;
@@ -207,7 +210,7 @@ public class Sword : MonoBehaviour
    {
     while(its_attack)
     {
-        Sword_Fuel-=0.05f;
+        Sword_Fuel-=0.035f;
         // stamina barı azalt
         yield return new WaitForSeconds(0.005f);
         if(Sword_Fuel<=0)
@@ -220,7 +223,7 @@ public class Sword : MonoBehaviour
    }
    public IEnumerator Attack_Stamina_refill()
    {
-    Wait_right_click=false;
+    
     while(!its_attack && Sword_Fuel<80)
     {
         Sword_Fuel+=0.02f;
