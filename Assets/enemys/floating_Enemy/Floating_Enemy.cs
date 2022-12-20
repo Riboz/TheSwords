@@ -123,7 +123,7 @@ public void Fireball()
  }
 void OnCollisionEnter2D(Collision2D coll)
 {
- if(coll.gameObject.CompareTag("Ground"))
+ if(coll.gameObject.CompareTag("ground"))
  {
     place_found=false;
  }

@@ -29,7 +29,7 @@ public class Game_Generator : MonoBehaviour
             if(whic_direction<50){ 
              float y_pos=Random.Range(1,2.5f);
              float x_pos=player.transform.position.x+(int)Random.Range(8,14);
-               if(player.transform.position.x-x_pos<-7.5f)
+               if(player.transform.position.x-x_pos<-7.2f)
                {
                 float change=Random.Range(0,100);
                 if(change>0&&change<65)
@@ -47,7 +47,7 @@ public class Game_Generator : MonoBehaviour
              {
                float y_pos=Random.Range(1,2.5f);
              float x_pos=player.transform.position.x+(int)Random.Range(-8,-14);
-               if(player.transform.position.x-x_pos>7.5f)
+               if(player.transform.position.x-x_pos>7.2f)
                {
                  float change=Random.Range(0,100);
                  if(change>0&&change<65)

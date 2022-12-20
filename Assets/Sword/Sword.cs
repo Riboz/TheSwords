@@ -55,7 +55,7 @@ public class Sword : MonoBehaviour
          Vector3 Spawwn_pos=new Vector3(this.transform.position.x+Random.Range(-0.6f,0.6f),this.transform.position.y,0);
          Instantiate(Mana_effect,Spawwn_pos,Quaternion.identity);
          Sword_Fuel-=2.5f;
-          Cinemachine_Shake.Instance.Shake_Camera(0.4f,0.05f);
+          Cinemachine_Shake.Instance.Shake_Camera(0.5f,0.06f);
          Instantiate(Mana_Sword,Spawwn_pos,this.transform.rotation);
         yield return new WaitForSeconds(0.2f);
       }
